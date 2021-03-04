@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("Application moved from \"Not running\" to \"Foreground(Inactive)\": \(#function)")
+        let conversationListVC = ConversationsListViewController()
+        let navigationController = UINavigationController(rootViewController: conversationListVC)
+
+        window = UIWindow()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+
         return true
     }
     
