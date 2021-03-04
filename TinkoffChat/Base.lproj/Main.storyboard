@@ -1,31 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SG0-8e-cJc">
+                                <rect key="frame" x="67.5" y="20" width="240" height="240"/>
+                                <color key="backgroundColor" name="Yellow"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Ftx-jz-mwb"/>
+                                    <constraint firstAttribute="height" constant="240" id="cFV-49-PbW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWL-eQ-Kow">
+                                <rect key="frame" x="103" y="71.5" width="169" height="137.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="115"/>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="y6Y-U3-Pdb">
+                                <rect key="frame" x="96.5" y="290" width="182.5" height="99.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrey Ushakov" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LI-dg-4j7">
+                                        <rect key="frame" x="0.0" y="0.0" width="182.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8z0-E1-mEQ">
+                                        <rect key="frame" x="0.0" y="61" width="182.5" height="38.5"/>
+                                        <string key="text">iOS developer
+Moscow, Russia</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-UH-Wfw">
+                                <rect key="frame" x="56" y="608" width="263" height="39"/>
+                                <color key="backgroundColor" name="LightGray"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="8"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXS-LV-G7v">
+                                <rect key="frame" x="67.5" y="20" width="240" height="240"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="profileImageEditButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="llN-Ob-u8q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pXS-LV-G7v" firstAttribute="trailing" secondItem="SG0-8e-cJc" secondAttribute="trailing" id="0op-TV-NwT"/>
+                            <constraint firstItem="GWL-eQ-Kow" firstAttribute="centerY" secondItem="SG0-8e-cJc" secondAttribute="centerY" id="49z-1x-GTf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ab2-UH-Wfw" secondAttribute="trailing" constant="56" id="Al9-Nh-us7"/>
+                            <constraint firstItem="pXS-LV-G7v" firstAttribute="top" secondItem="SG0-8e-cJc" secondAttribute="top" id="C2b-uq-gbe"/>
+                            <constraint firstItem="pXS-LV-G7v" firstAttribute="leading" secondItem="SG0-8e-cJc" secondAttribute="leading" id="IlG-qC-fLI"/>
+                            <constraint firstItem="SG0-8e-cJc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PGL-3Q-U6D"/>
+                            <constraint firstItem="ab2-UH-Wfw" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="Qrl-j1-qli"/>
+                            <constraint firstItem="y6Y-U3-Pdb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aNU-RO-Z9r"/>
+                            <constraint firstItem="GWL-eQ-Kow" firstAttribute="centerX" secondItem="SG0-8e-cJc" secondAttribute="centerX" id="agc-Yv-ZFV"/>
+                            <constraint firstItem="SG0-8e-cJc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="b93-jH-Sfe"/>
+                            <constraint firstItem="y6Y-U3-Pdb" firstAttribute="top" secondItem="SG0-8e-cJc" secondAttribute="bottom" constant="30" id="mJ1-9n-z6u"/>
+                            <constraint firstItem="ab2-UH-Wfw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="pGB-41-NBF"/>
+                            <constraint firstItem="pXS-LV-G7v" firstAttribute="bottom" secondItem="SG0-8e-cJc" secondAttribute="bottom" id="pN3-f1-uEx"/>
+                            <constraint firstItem="GWL-eQ-Kow" firstAttribute="width" secondItem="SG0-8e-cJc" secondAttribute="height" multiplier="169:240" id="x8s-iA-dD3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="profileEditButton" destination="pXS-LV-G7v" id="AdI-3j-3cB"/>
+                        <outlet property="profileImageLabel" destination="GWL-eQ-Kow" id="t1a-q1-NGd"/>
+                        <outlet property="profileImageView" destination="SG0-8e-cJc" id="9hV-r3-bFn"/>
+                        <outlet property="saveButton" destination="ab2-UH-Wfw" id="qSt-SX-KaD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="112" y="20"/>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="DarkGray">
+            <color red="0.2118243575" green="0.21560508010000001" blue="0.2196086049" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.96471232179999999" green="0.96469420189999999" blue="0.96470659969999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Yellow">
+            <color red="0.89551317689999999" green="0.90866822000000003" blue="0.33708563450000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
