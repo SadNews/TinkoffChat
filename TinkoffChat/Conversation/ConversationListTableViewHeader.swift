@@ -14,6 +14,7 @@ class ConversationListTableViewHeader: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = Appearance.boldFont24
+        label.textColor = Appearance.labelColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,16 +48,9 @@ class ConversationListTableViewHeader: UIView {
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
                                                constant: -vertivalPadding)
         ])
-        setupBackgroundColor()
+        backgroundColor = Appearance.backgroundColor
     }
-
-    private func setupBackgroundColor() {
-        if #available(iOS 13.0, *) {
-            backgroundColor = .systemBackground
-        } else {
-            backgroundColor = .white
-        }
-    }
+    
 }
 
 // MARK: - ConfigurableView
@@ -67,7 +61,7 @@ extension ConversationListTableViewHeader: ConfigurableView {
         if let bgColor = model.backgroundColor {
             backgroundColor = bgColor
         } else {
-            setupBackgroundColor()
+            backgroundColor = Appearance.backgroundColor
         }
     }
 }

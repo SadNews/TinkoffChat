@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		112EA67125FA85B1005259E5 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112EA67025FA85B1005259E5 /* BaseNavigationController.swift */; };
+		112EA67525FA8689005259E5 /* TinkoffFintechMessenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112EA67425FA8689005259E5 /* TinkoffFintechMessenger.swift */; };
+		112EA67825FA86A6005259E5 /* ThemesPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112EA67725FA86A6005259E5 /* ThemesPickerDelegate.swift */; };
+		112EA67B25FA86C6005259E5 /* ThemeButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112EA67A25FA86C6005259E5 /* ThemeButtonModel.swift */; };
+		112EA67E25FA891F005259E5 /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112EA67D25FA891F005259E5 /* ThemePicker.swift */; };
 		113ABEC525DDD10C0084BA50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113ABEC425DDD10C0084BA50 /* AppDelegate.swift */; };
 		113ABEC925DDD10C0084BA50 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113ABEC825DDD10C0084BA50 /* ProfileViewController.swift */; };
 		113ABECC25DDD10C0084BA50 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113ABECA25DDD10C0084BA50 /* Profile.storyboard */; };
@@ -31,6 +36,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		112EA67025FA85B1005259E5 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		112EA67425FA8689005259E5 /* TinkoffFintechMessenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffFintechMessenger.swift; sourceTree = "<group>"; };
+		112EA67725FA86A6005259E5 /* ThemesPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegate.swift; sourceTree = "<group>"; };
+		112EA67A25FA86C6005259E5 /* ThemeButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButtonModel.swift; sourceTree = "<group>"; };
+		112EA67D25FA891F005259E5 /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
 		113ABEC125DDD10C0084BA50 /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		113ABEC425DDD10C0084BA50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		113ABEC825DDD10C0084BA50 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		112EA66F25FA859F005259E5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				112EA67025FA85B1005259E5 /* BaseNavigationController.swift */,
+				112EA67425FA8689005259E5 /* TinkoffFintechMessenger.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		112EA68025FA8939005259E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				112EA67D25FA891F005259E5 /* ThemePicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		113ABEB825DDD10C0084BA50 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +113,8 @@
 		113ABEC325DDD10C0084BA50 /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				112EA68025FA8939005259E5 /* Views */,
+				112EA66F25FA859F005259E5 /* Controllers */,
 				113ABEC425DDD10C0084BA50 /* AppDelegate.swift */,
 				11C58A4F25F180D100A6A587 /* ConfigurableView.swift */,
 				113ABECA25DDD10C0084BA50 /* Profile.storyboard */,
@@ -131,6 +160,7 @@
 				11C58A4825F180B000A6A587 /* MessageCellModel.swift */,
 				11C58A4025F1807F00A6A587 /* ConversationCellModel.swift */,
 				11C58A4B25F180BA00A6A587 /* Person.swift */,
+				112EA67A25FA86C6005259E5 /* ThemeButtonModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				11C58A5525F1810A00A6A587 /* DataProvider.swift */,
+				112EA67725FA86A6005259E5 /* ThemesPickerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -233,18 +264,23 @@
 				11C58A8325F1889800A6A587 /* ConversationListSectionModel.swift in Sources */,
 				11C58A4925F180B000A6A587 /* MessageCellModel.swift in Sources */,
 				113ABEDF25DDD88F0084BA50 /* LogManager.swift in Sources */,
+				112EA67825FA86A6005259E5 /* ThemesPickerDelegate.swift in Sources */,
 				11C58A3B25F17FE300A6A587 /* ConversationsListViewController.swift in Sources */,
+				112EA67B25FA86C6005259E5 /* ThemeButtonModel.swift in Sources */,
 				11C58A5325F180DF00A6A587 /* DummyDataProvider.swift in Sources */,
 				11C58A6425F1821000A6A587 /* ConversationListTableViewHeader.swift in Sources */,
+				112EA67125FA85B1005259E5 /* BaseNavigationController.swift in Sources */,
 				11C58A4C25F180BA00A6A587 /* Person.swift in Sources */,
 				113ABEC925DDD10C0084BA50 /* ProfileViewController.swift in Sources */,
 				11C58A6125F181FE00A6A587 /* ConversationListTableViewCell.swift in Sources */,
 				11C58A6725F1838500A6A587 /* ProfileImageView.swift in Sources */,
+				112EA67525FA8689005259E5 /* TinkoffFintechMessenger.swift in Sources */,
 				11C58A5025F180D100A6A587 /* ConfigurableView.swift in Sources */,
 				11C58A3725F17FBA00A6A587 /* ConversationViewController.swift in Sources */,
 				11C58A5D25F181D500A6A587 /* MessageCell.swift in Sources */,
 				11C58A4125F1807F00A6A587 /* ConversationCellModel.swift in Sources */,
 				113ABEC525DDD10C0084BA50 /* AppDelegate.swift in Sources */,
+				112EA67E25FA891F005259E5 /* ThemePicker.swift in Sources */,
 				11C58A5625F1810A00A6A587 /* DataProvider.swift in Sources */,
 				11C58A8725F1893B00A6A587 /* Date+Formatter.swift in Sources */,
 				11C58A7E25F1886C00A6A587 /* Appearance.swift in Sources */,

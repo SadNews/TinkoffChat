@@ -81,21 +81,21 @@ class ProfileViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         var actions = [
-                  UIAlertAction(title: "Open Gallery", style: .default) { [unowned self] _ in
-                      self.presentImagePicker(sourceType: .photoLibrary)
-                  },
-                  UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
-                      self.checkCameraPermission()
-                  }]
-
-              if (person.profileImage != nil) {
-                  actions.append(UIAlertAction(title: "Remove Photo", style: .destructive) { [unowned self] _ in
-                      self.setProfileImage(image: nil)
-                  })
-              }
-
-              actions.append(UIAlertAction(title: "Cancel", style: .cancel))
-
+            UIAlertAction(title: "Open Gallery", style: .default) { [unowned self] _ in
+                self.presentImagePicker(sourceType: .photoLibrary)
+            },
+            UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
+                self.checkCameraPermission()
+            }]
+        
+        if (person.profileImage != nil) {
+            actions.append(UIAlertAction(title: "Remove Photo", style: .destructive) { [unowned self] _ in
+                self.setProfileImage(image: nil)
+            })
+        }
+        
+        actions.append(UIAlertAction(title: "Cancel", style: .cancel))
+        
         
         actions.forEach { alertController.addAction($0) }
         
@@ -123,27 +123,30 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-          dismiss(animated: true, completion: nil)
-      }
+        dismiss(animated: true, completion: nil)
+    }
     
     private func setupLayout() {
-           profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
-           saveButton.layer.cornerRadius = Appearance.baseCornerRadius
-           navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .cancel,
-                                                     target: self,
-                                                     action: #selector(cancel))
-           navigationItem.title = "My Profile"
-       }
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        saveButton.layer.cornerRadius = Appearance.baseCornerRadius
+        saveButton.backgroundColor = Appearance.grayColor
+        
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .cancel,
+                                                  target: self,
+                                                  action: #selector(cancel))
+        navigationItem.title = "My Profile"
+        view.backgroundColor = Appearance.backgroundColor
+    }
     
     private func setProfileImage(image: UIImage?) {
-         person.profileImage = image
-         profileImageView.configure(with: person)
-     }
-
-     @objc private func cancel() {
-         dismiss(animated: true, completion: nil)
-     }
-
+        person.profileImage = image
+        profileImageView.configure(with: person)
+    }
+    
+    @objc private func cancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     func checkCameraPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
