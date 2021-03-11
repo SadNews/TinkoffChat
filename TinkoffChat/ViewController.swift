@@ -11,13 +11,11 @@ import AVFoundation
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var profileImageView: ProfileImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileImageLabel: UILabel!
     @IBOutlet weak var profileEditButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    private let dataProvider: DataProvider = DummyDataProvider()
-    private lazy var person = dataProvider.getUser()
     private lazy var imagePickerController: UIImagePickerController = {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -52,7 +50,6 @@ class ProfileViewController: UIViewController {
         super.viewDidAppear(animated)
         LogManager.showMessage(#function)
         LogManager.showMessage("\(profileEditButton.frame)")
-        profileImageView.configure(with: person)
         // Во viewDidLoad констрейнты еще не установлены долдным образом
         // и размеры вьюшек не определны окончательно
     }
@@ -80,22 +77,14 @@ class ProfileViewController: UIViewController {
     @IBAction private func profileImageEditButtonPressed(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        var actions = [
+        let actions = [
             UIAlertAction(title: "Open Gallery", style: .default) { [unowned self] _ in
                 self.presentImagePicker(sourceType: .photoLibrary)
             },
-            UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
+            UIAlertAction(title: "Take a Photo", style: .default) { [unowned self] _ in
                 self.checkCameraPermission()
-            }]
-        
-        if (person.profileImage != nil) {
-            actions.append(UIAlertAction(title: "Remove Photo", style: .destructive) { [unowned self] _ in
-                self.setProfileImage(image: nil)
-            })
-        }
-        
-        actions.append(UIAlertAction(title: "Cancel", style: .cancel))
-        
+            },
+            UIAlertAction(title: "Cancel", style: .cancel)]
         
         actions.forEach { alertController.addAction($0) }
         
@@ -121,32 +110,6 @@ class ProfileViewController: UIViewController {
             self.present(alertController, animated: true)
         }
     }
-    
-    @IBAction func saveButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    private func setupLayout() {
-        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
-        saveButton.layer.cornerRadius = Appearance.baseCornerRadius
-        saveButton.backgroundColor = Appearance.grayColor
-        
-        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .cancel,
-                                                  target: self,
-                                                  action: #selector(cancel))
-        navigationItem.title = "My Profile"
-        view.backgroundColor = Appearance.backgroundColor
-    }
-    
-    private func setProfileImage(image: UIImage?) {
-        person.profileImage = image
-        profileImageView.configure(with: person)
-    }
-    
-    @objc private func cancel() {
-        dismiss(animated: true, completion: nil)
-    }
-    
     
     func checkCameraPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -177,6 +140,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
             return
         }
         
-        setProfileImage(image: image)
+        profileImageView.image = image
+        profileImageLabel.isHidden = true
     }
 }
