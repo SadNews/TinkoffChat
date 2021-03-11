@@ -51,7 +51,12 @@ final class ConversationViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.tintColor = .label
+        } else {
+            navigationController?.navigationBar.tintColor = .black
+        }
         navigationItem.title = conversationName
     }
 }
