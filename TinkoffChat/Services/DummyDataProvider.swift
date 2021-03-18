@@ -8,15 +8,11 @@
 import Foundation
 
 class DummyDataProvider: DataProvider {
-
-    func getUser() -> Person {
-        .init(firstName: "Andrey", secondName: "Ushakov", profileImage: nil)
-    }
-
+    
     func getConversations() -> [ConversationCellModel] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-
+        
         return [
             .init(name: "Ronald Robertson",
                   message: "An suas viderer pro. Vis cu magna altera, ex his vivendo atomorum.",
@@ -125,7 +121,7 @@ class DummyDataProvider: DataProvider {
                   hasUnreadMessages: false),
             ]
     }
-
+    
     func getMessages() -> [MessageCellModel] {
         return [
             .init(text: "An suas viderer pro. Vis cu magna altera, ex his vivendo atomorum",

@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Application moved from \"Not running\" to \"Foreground(Inactive)\": \(#function)")
         let conversationListVC = ConversationsListViewController()
         let navigationController = BaseNavigationController(rootViewController: conversationListVC)
-
+        
+        setUserData(vc: conversationListVC)
         window = UIWindow()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
@@ -43,6 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("Application will moved from \"Background\" to \"Suspended\" and then to \"Not running\": \(#function)")
+    }
+    
+    private func setUserData(vc: ConversationsListViewController) {
+        let dataManager = GCDDataManager()
+        //let dataManager = OperationDataManager()
+        
+        GCDDataManager().loadPersonData { personViewModel in
+            if personViewModel == nil {
+                dataManager.savePersonData(.init(fullName: "Andrey Ushakov",
+                                                 description: "iOS developer\nMoscow",
+                                                 profileImage: nil)) { _ in vc.loadData() }
+            }
+        }
     }
     
 }

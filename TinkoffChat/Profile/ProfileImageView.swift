@@ -8,7 +8,10 @@
 import UIKit
 
 class ProfileImageView: UIView {
-
+    
+    var profileImage: UIImage? {
+        imageView.image
+    }
     // MARK: - UI
     
     private lazy var imageView: UIImageView = {
@@ -32,8 +35,8 @@ class ProfileImageView: UIView {
         return label
     }()
 
-    private let labelSizeMultiplier: CGFloat = 0.7
-
+    private let labelSizeMultiplier: CGFloat = 0.6
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -80,7 +83,7 @@ class ProfileImageView: UIView {
 
 // MARK: - ConfigurableView
 extension ProfileImageView: ConfigurableView {
-    func configure(with model: Person) {
+    func configure(with model: PersonViewModel) {
         imageView.image = model.profileImage
         initialsLabel.isHidden = model.profileImage != nil
         initialsLabel.text = model.initials

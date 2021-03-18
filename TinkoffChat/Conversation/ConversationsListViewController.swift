@@ -16,7 +16,15 @@ final class ConversationsListViewController: UIViewController {
     private let baseCellId = "baseCellId"
     private lazy var items = dataProvider.getConversations()
     private lazy var sectionsModels: [ConversationListSectionModel] = []
-    
+    private var person: PersonViewModel? {
+        didSet {
+            if let person = self.person {
+                DispatchQueue.main.async { [weak self] in
+                    self?.profileImageView.configure(with: person)
+                }
+            }
+        }
+    }
     
     // MARK: - UI
     
@@ -29,12 +37,14 @@ final class ConversationsListViewController: UIViewController {
         
         return tableView
     }()
+    private lazy var profileImageView = ProfileImageView()
     
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData()
         setupLayout()
     }
     
@@ -45,17 +55,22 @@ final class ConversationsListViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func loadData() {
+        let dataManager = GCDDataManager()
+        //let dataManager = OperationDataManager()
+        
+        dataManager.loadPersonData { [weak self] person in
+            self?.person = person
+        }
+    }
     
     // MARK: - Private methods
     
     private func setupLayout() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         navigationItem.title = "Tinkoff Chat"
         
-        let profileImageView = ProfileImageView()
-        profileImageView.configure(with: dataProvider.getUser())
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                      action: #selector(presentProfileViewController)))
         let rightBarButtonView = UIView()
@@ -82,9 +97,12 @@ final class ConversationsListViewController: UIViewController {
     
     @objc private func presentProfileViewController() {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        if let vc = storyboard.instantiateInitialViewController() {
+        if let vc = storyboard.instantiateInitialViewController() as? ProfileViewController {
             let nc = BaseNavigationController(rootViewController: vc)
-            
+            vc.profileDataUpdatedHandler = { [weak self] in
+                self?.loadData()
+            }
+
             present(nc, animated: true, completion: nil)
         }
     }
@@ -92,7 +110,7 @@ final class ConversationsListViewController: UIViewController {
     @objc private func presentThemesViewController() {
         let vc = ThemesViewController()
         vc.themesPickerDelegate = Appearance.shared
-        vc.themeSelectedCallback = Appearance.shared.themeSelectedCallback
+        //vc.themeSelectedCallback = Appearance.shared.themeSelectedCallback
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -108,6 +126,7 @@ final class ConversationsListViewController: UIViewController {
         ]
     }
 }
+
 // MARK: - UITableViewDataSource
 extension ConversationsListViewController: UITableViewDataSource {
     
