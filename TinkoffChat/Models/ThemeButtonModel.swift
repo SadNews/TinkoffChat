@@ -18,6 +18,7 @@ struct ThemeModel {
     let grayColor: UIColor?
     let yellowColor: UIColor?
     let uiUserInterfaceStyle: UIUserInterfaceStyle
+    let sendButtonColor: UIColor?
 
     var isSelected: Bool {
         Appearance.shared.currentTheme?.id == id

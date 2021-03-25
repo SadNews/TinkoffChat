@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         print("Application moved from \"Not running\" to \"Foreground(Inactive)\": \(#function)")
         let conversationListVC = ConversationsListViewController()
         let navigationController = BaseNavigationController(rootViewController: conversationListVC)
@@ -23,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         Appearance.shared.setupTheme()
 
+        FirebaseApp.configure()
+        
         return true
     }
     

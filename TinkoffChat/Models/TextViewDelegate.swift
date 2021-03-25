@@ -8,18 +8,18 @@
 import UIKit
 
 class TextViewDelegate: NSObject {
-
+    
     enum TextViewType {
         case nameTextView
         case descriptionTextView
     }
-
+    
     // MARK: - Public properties
     
     var textViewType: TextViewType?
-
-    let textChangedHandler: () -> ()
-
+    
+    let textChangedHandler: () -> Void
+    
     // MARK: - Public properties
     
     private var limitCharNumber: Int? {
@@ -32,7 +32,7 @@ class TextViewDelegate: NSObject {
             return nil
         }
     }
-
+    
     private var limitNumberOfLines: Int? {
         switch textViewType {
         case .descriptionTextView:
@@ -44,7 +44,7 @@ class TextViewDelegate: NSObject {
 
     // MARK: - Initializer
     
-    init(textViewType: TextViewType? = nil, textChangedHandler: @escaping () -> ()) {
+    init(textViewType: TextViewType? = nil, textChangedHandler: @escaping () -> Void) {
         self.textChangedHandler = textChangedHandler
         self.textViewType = textViewType
     }
@@ -54,13 +54,13 @@ class TextViewDelegate: NSObject {
 extension TextViewDelegate: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+        
         guard let textViewType = self.textViewType,
               let limitCharNumber = self.limitCharNumber else {
             return true
         }
         let currentText = textView.text ?? ""
-
+        
         if text == "\n" {
             if textViewType == .nameTextView || currentText.hasSuffix("\n") {
                 textView.resignFirstResponder()
@@ -76,12 +76,12 @@ extension TextViewDelegate: UITextViewDelegate {
                 }
             }
         }
-
+        
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
         return updatedText.count <= limitCharNumber
     }
-
+    
     func textViewDidChange(_ textView: UITextView) {
         textChangedHandler()
     }

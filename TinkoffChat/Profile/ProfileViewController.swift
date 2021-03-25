@@ -13,7 +13,7 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Public properties
     
-    var profileDataUpdatedHandler: (() -> ())?
+    var profileDataUpdatedHandler: (() -> Void)?
     
     // MARK: - IBOutlets
     
@@ -29,7 +29,6 @@ final class ProfileViewController: UIViewController {
     // MARK: - Private properties
     
     private lazy var activityIndicator = UIActivityIndicatorView()
-    private let dataProvider: DataProvider = DummyDataProvider()
     private let gcdDataManager: DataManager = GCDDataManager()
     private let operationDataManager: DataManager = OperationDataManager()
     private var person: PersonViewModel?
@@ -84,12 +83,6 @@ final class ProfileViewController: UIViewController {
         
         setupLayout()
     }
-    
-    // MARK: - Deinit
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 
     // MARK: - IBActions
     
@@ -108,7 +101,7 @@ final class ProfileViewController: UIViewController {
                 }
             }]
         
-        if (person?.profileImage != nil) {
+        if person?.profileImage != nil {
             actions.append(UIAlertAction(title: "Remove Photo", style: .destructive) { [weak self] _ in
                 self?.setProfileImage(image: nil)
                 let imageChanged = self?.originalUserImage != nil
@@ -252,9 +245,9 @@ final class ProfileViewController: UIViewController {
     }
     
     private func showAlert(title: String = "Error",
-                                message: String = "This action is not allowed",
-                                additionalActions: [UIAlertAction] = [],
-                                primaryHandler: ((UIAlertAction) -> Void)? = nil) {
+                           message: String = "This action is not allowed",
+                           additionalActions: [UIAlertAction] = [],
+                           primaryHandler: ((UIAlertAction) -> Void)? = nil) {
         
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -270,7 +263,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func exitEditMode() {
-        if (userNameTextView.isUserInteractionEnabled) {
+        if userNameTextView.isUserInteractionEnabled {
             toggleEditMode()
         }
         setSaveButtonsEnabled(false)
@@ -287,8 +280,7 @@ final class ProfileViewController: UIViewController {
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-           keyboardSize.height > 0
-        {
+            keyboardSize.height > 0 {
             if userNameTextView.isFirstResponder {
                 userNameBottomConstraint.constant = keyboardSize.height
                 userNameBottomConstraint.priority = .required

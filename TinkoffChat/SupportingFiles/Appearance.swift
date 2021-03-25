@@ -9,6 +9,8 @@ import UIKit
 
 class Appearance {
     
+    // MARK: - Singleton
+    
     static let shared = Appearance()
     private init() {}
     
@@ -16,6 +18,7 @@ class Appearance {
     
     static let font13 = UIFont.systemFont(ofSize: 13)
     static let font15 = UIFont.systemFont(ofSize: 15)
+    static let font18 = UIFont.systemFont(ofSize: 18)
     
     // MARK: - Medium fonts
     
@@ -72,7 +75,8 @@ class Appearance {
               statusBarStyle: .default,
               grayColor: lightGray,
               yellowColor: yellowLight,
-              uiUserInterfaceStyle: .light),
+              uiUserInterfaceStyle: .light,
+              sendButtonColor: outgoingMessageLightColor),
         .init(id: 1,
               name: "Day",
               incomingMessageColor: incomingMessageLightColor,
@@ -82,7 +86,8 @@ class Appearance {
               statusBarStyle: .default,
               grayColor: lightGray,
               yellowColor: yellowLight,
-              uiUserInterfaceStyle: .light),
+              uiUserInterfaceStyle: .light,
+              sendButtonColor: outgoingMessageDay),
         .init(id: 2,
               name: "Night",
               incomingMessageColor: incomingMessageDarkColor,
@@ -92,7 +97,8 @@ class Appearance {
               statusBarStyle: .lightContent,
               grayColor: darkGray,
               yellowColor: yellowDark,
-              uiUserInterfaceStyle: .dark),
+              uiUserInterfaceStyle: .dark,
+              sendButtonColor: outgoingMessageLightColor)
     ]
     
     private var currentThemeId: Int {
@@ -166,6 +172,9 @@ class Appearance {
     }
     static var grayColor: UIColor? {
         shared.currentTheme?.grayColor
+    }
+    static var sendButtonColor: UIColor? {
+        shared.currentTheme?.sendButtonColor
     }
 }
 
